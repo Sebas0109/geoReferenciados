@@ -1,0 +1,12 @@
+1.- git init //Para inicar  repositorio 
+2.- git clone /path/yo/repository // para clonar en repo viene en github en clone button
+    No se tiene que documentar codigo cuando se sube a un repo asi que en los commit se pone lo que hiciste en el dia 
+3.- Obfuscator para obfuscar el codigo y asi evitar que se vea que es lo que tiene el codigo al decompilarlo
+4.- En los ajustes de git del repo se pued eponer nombre de los colaboradores para que sean los unicos con acceso a el repo que se haga
+5.- git commit -m  "nuevo" //m es d eparte de que sera un comentario de ese commit
+6.- git push origin master 
+7.- git push // Solo es para que se suba sin especificar la rama a la que se hace
+8.- Issues es para hacer un reporte con arroba se ve mas especifico si no lo tiene se ve 
+9.- Pull request muestra una solicutud de cambios de lo que s epuede ahcer -> despues es un merge para que se una a la branch master
+10.- PARA VER EL WORKFLOW DE GIT https://medium.com/@talgoldfus/better-understanding-gits-work-flow-in-order-to-properly-deal-with-merge-conflicts-part-i-760a366fc997
+11.- 

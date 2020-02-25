@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Haz Click para obtener las coordenadas</p>
+    <button onclick="getLocation()">Obtener Geo.</button>
+
+    <p id="demo"></p>
+    <script>
+      var x = document.getElementById('demo');
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = 'No tiene Geolocalizacion';
+        }
+      }
+
+      function showPosition(position) {
+        x.innerHTML =
+          'Latitud: ' +
+          position.coords.latitude +
+          '<br/>' +
+          'Longitud: ' +
+          position.coords.longitude;
+      }
+    </script>
+  </body>
+</html>
