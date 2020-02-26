@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practica 5 info window</title>
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+        background-color: #efefef;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      function iniciarMapa() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: 21.152639, lng: -101.711598 },
+          zoom: 14
+        });
+        informacion = new google.maps.InfoWindow();
+
+        if (navigator.geolocation) {
+          /*navigator.geolocation.getCurrentPosition(function (posicion){
+            var pos = { lat: posicion.coords.latitude, lng: posicion.coords.longitude };
+            console.log(pos);
+
+            informacion.setPosition(pos);
+            informacion.setContent(
+              "Ya te Localize, niño Puerco, RUN <br> <img src='https://www.bing.com/th?id=OIP.uxkCLCVoxLJlkoPTFDoMLgHaE8&pid=Api&rs=1'>"
+            );
+            informacion.open(map);
+          });*/
+
+          navigator.geolocation.getCurrentPosition(posicion => {
+            var pos = { lat: posicion.coords.latitude, lng: posicion.coords.longitude };
+            console.log(pos);
+
+            informacion.setPosition(pos);
+            informacion.setContent(
+              "Ya te Localize, niño Puerco, RUN <br> <img src='https://www.bing.com/th?id=OIP.uxkCLCVoxLJlkoPTFDoMLgHaE8&pid=Api&rs=1'>"
+            );
+            informacion.open(map);
+          });
+        }
+      }
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciarMapa"
+      async
+      defer
+    ></script>
+  </body>
+</html>

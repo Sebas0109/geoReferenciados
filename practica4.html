@@ -24,7 +24,7 @@
           var coordenadas = posicion.coords.latitude + ',' + posicion.coords.longitude;
           console.log(coordenadas);
 
-          var imagenUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${coordenadas}&zoom=13&size=800x400&maptype=roadmap&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA`;
+          var imagenUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${coordenadas}&zoom=13&size=400x800&maptype=roadmap&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA`;
 
           document.getElementById('mapa').innerHTML = `<img src= ${imagenUrl}>`;
         }
