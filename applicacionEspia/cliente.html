@@ -96,19 +96,14 @@
       }
 
       function uploadLocation(pos) {
-        var docRef = db
+
+        var snapshot = await db
           .collection('localizacion')
-          .get()
-          .then(doc => {
-            if (doc.exists) {
-              console.log(doc.data());
-            } else {
-              console.log('EMPTY');
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          });
+          .get();
+          snapshot.docs.map(doc => console.log(doc.data()));
+
+
+          //db.collection('localizacion').where('uid', ==)
 
         /*db.collection('localizacion').add({
           latitud: pos.lat,
