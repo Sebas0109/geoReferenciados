@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seguimiento de Usuario</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+
+    <style>
+      #map {
+        height: 100%;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      var map;
+
+      //config de firebase
+      var firebaseConfig = {
+        apiKey: 'AIzaSyCJPVmaMVTj-8hmM6o7S1w_DeRleiaQOZk',
+        authDomain: 'proyecto1georef65724.firebaseapp.com',
+        databaseURL: 'https://proyecto1georef65724.firebaseio.com',
+        projectId: 'proyecto1georef65724',
+        storageBucket: 'proyecto1georef65724.appspot.com',
+        messagingSenderId: '929552916543',
+        appId: '1:929552916543:web:acb8cf07d7bf21a131188a'
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      var coordenadas = {
+        lat: 0,
+        lng: 0
+      };
+      /*var propiedades = {
+        center: coordenadas,
+        zoom: 20
+      };*/
+
+      function iniciarMapa() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: coordenadas,
+          zoom: 20
+        });
+
+        /*var icono = {
+          url:
+            'https://images-na.ssl-images-amazon.com/images/I/71W5lMNvxBL._AC_SY879_.jpg',
+          scaledSize: new google.maps.Size(50, 50),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+        };*/
+
+        var marker = new google.maps.Marker({
+          position: { lat: 0, lng: 0 },
+          map: map
+        });
+
+        if (navigator.geolocation) {
+          setInterval(function() {
+            moverPosicion(marker);
+          }, 3000);
+        }
+      }
+
+      function moverPosicion(marker) {
+        navigator.geolocation.getCurrentPosition(posicion => {
+          var pos = {
+            lat: posicion.coords.latitude,
+            lng: posicion.coords.longitude
+          };
+
+          marker.setPosition(
+            new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude)
+          );
+          map.panTo(
+            new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude)
+          );
+          map.setCenter(pos);
+        });
+
+        uploadLocation(pos);
+      }
+
+      function uploadLocation(pos) {
+        var docRef = db.collection('localizacion').get(doc => {
+          if (doc.exists) {
+            console.log(doc.data());
+          } else {
+            console.log('EMPTY');
+          }
+        });
+
+        /*db.collection('localizacion').add({
+          latitud: pos.lat,
+          longitud: pos.lng
+        });
+
+        db.collection('localizacion').onSnapshot(snapshot => {
+          let changes = snapshot.docChanges();
+          changes.forEach(change => {
+            if (change.type == 'added') {
+            } else if (change.type == 'removed') {
+              //console.log(change.doc.id);
+            }
+          });
+        });*/
+      }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciarMapa"
+      async
+      defer
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
