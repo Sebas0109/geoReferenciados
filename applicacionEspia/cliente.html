@@ -96,13 +96,16 @@
       }
 
       function uploadLocation(pos) {
-        var docRef = db.collection('localizacion').get(doc => {
-          if (doc.exists) {
-            console.log(doc.data());
-          } else {
-            console.log('EMPTY');
-          }
-        });
+        var docRef = db
+          .collection('localizacion')
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              console.log(doc.data());
+            } else {
+              console.log('EMPTY');
+            }
+          });
 
         /*db.collection('localizacion').add({
           latitud: pos.lat,
