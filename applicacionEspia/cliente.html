@@ -105,6 +105,9 @@
             } else {
               console.log('EMPTY');
             }
+          })
+          .catch(err => {
+            console.log(err);
           });
 
         /*db.collection('localizacion').add({
