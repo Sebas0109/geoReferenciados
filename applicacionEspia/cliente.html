@@ -102,7 +102,11 @@
 
       async function uploadLocation(pos) {
         var snapshot = await db.collection('localizacion').get();
-        snapshot.docs.map(doc => console.log(doc.id, doc + ' ' + doc.data()));
+        snapshot.docs.map(doc => {
+          db.collection('localizacion')
+            .doc(doc.id)
+            .update({ latitud: pos.lat, longitud: pos.lng });
+        });
 
         //Log The docs in the firebase doc
 
