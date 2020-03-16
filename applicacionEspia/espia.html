@@ -111,11 +111,11 @@
           let id = e.target.parentElement.getAttribute('id');
           console.log(e.target.parentElement.getAttribute('latitud'));
           console.log(e.target.parentElement.getAttribute('longitud'));
-          let lat = e.target.parentElement.getAttribute('latitud');
-          let lng = e.target.parentElement.getAttribute('longitud');
+          let latitud = e.target.parentElement.getAttribute('latitud');
+          let longitud = e.target.parentElement.getAttribute('longitud');
           coordenadas = {
-            latitud: lat,
-            longitud: lng
+            lat: latitud,
+            lng: longitud
           };
           iniciarMapa(coordenadas);
         });
@@ -128,11 +128,11 @@
         });
 
         var marker = new google.maps.Marker({
-          position: { lat: coordenadas.latitud, lng: coordenadas.longitud },
+          position: { lat: coordenadas.lat, lng: coordenadas.lng },
           map: map
         });
 
-        map.panTo(new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud));
+        map.panTo(new google.maps.LatLng(coordenadas.lat, coordenadas.lng));
         map.setCenter(coordenadas);
       }
     </script>
