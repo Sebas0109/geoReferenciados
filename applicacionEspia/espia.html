@@ -65,8 +65,25 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
+      var coordenadas = {
+        lat: 0,
+        lng: 0
+      };
 
       const ubicaciones = document.querySelector('#lista');
+
+      //getting when it is updated the localization
+      db.collection('localizacion').onSnapshot(snapshot => {
+        let changes = snapshot.docChanges();
+        changes.forEach(change => {
+          if (change.type == 'added') {
+            renderUbicacion(change.doc);
+          } else if (change.type == 'updated') {
+            //console.log(change.doc.id);
+            renderUbicacion(change.doc);
+          }
+        });
+      });
 
       function renderUbicacion(doc) {
         let li = document.createElement('li');
@@ -81,6 +98,8 @@
         ubicacion.textContent = 'Ir a Ubicacion';
 
         li.setAttribute('id', doc.id);
+        li.setAttribute('latitud', doc.data().latitud);
+        li.setAttribute('longitud', doc.data().longitud);
 
         li.appendChild(ubicacion);
         li.appendChild(latitud);
@@ -90,24 +109,38 @@
 
         ubicacion.addEventListener('click', e => {
           let id = e.target.parentElement.getAttribute('id');
-          console.log(e.target.parentElement);
+          console.log(e.target.parentElement.getAttribute('latitud'));
+          console.log(e.target.parentElement.getAttribute('longitud'));
+          let lat = e.target.parentElement.getAttribute('latitud');
+          let lng = e.target.parentElement.getAttribute('longitud');
+          coordenadas = {
+            latitud: lat,
+            longitud: lng
+          };
+          iniciarMapa(coordenadas);
         });
       }
 
-      //getting when it is updated the localization
-      db.collection('localizacion').onSnapshot(snapshot => {
-        let changes = snapshot.docChanges();
-        changes.forEach(change => {
-          if (change.type == 'added') {
-            renderUbicacion(change.doc);
-          } else if (change.type == 'updated') {
-            //console.log(change.doc.id);
-            renderUbicacion(change.doc);
-          }
+      function iniciarMapa(coordenadas) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: coordenadas,
+          zoom: 20
         });
-      });
-    </script>
 
+        var marker = new google.maps.Marker({
+          position: { lat: coordenadas.latitud, lng: coordenadas.longitud },
+          map: map
+        });
+
+        map.panTo(new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud));
+        map.setCenter(coordenadas);
+      }
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciarMapa"
+      async
+      defer
+    ></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
