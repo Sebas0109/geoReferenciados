@@ -13,6 +13,11 @@
       #map {
         height: 100%;
       }
+
+      #clasees {
+        height: 100%;
+      }
+
       html,
       body {
         height: 100%;
@@ -95,15 +100,13 @@
         });
       }
 
-      function uploadLocation(pos) {
+      async function uploadLocation(pos) {
+        var snapshot = await db.collection('localizacion').get();
+        snapshot.docs.map(doc => console.log(doc.data()));
 
-        var snapshot = await db
-          .collection('localizacion')
-          .get();
-          snapshot.docs.map(doc => console.log(doc.data()));
+        //Log The docs in the firebase doc
 
-
-          //db.collection('localizacion').where('uid', ==)
+        //db.collection('localizacion').where('uid', ==)
 
         /*db.collection('localizacion').add({
           latitud: pos.lat,
