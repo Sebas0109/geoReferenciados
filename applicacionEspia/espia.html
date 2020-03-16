@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Espia de la App</title>
 
+    <style>
+      ul {
+        list-style-type: none;
+      }
+    </style>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
@@ -28,7 +34,7 @@
     <div class="container-fluid bg-light py-5">
       <div class="container">
         <div class="col-12">
-          <h3><i class="fas fa-boxes text-uppercase"></i> Ubicacion Obtenida</h3>
+          <h3><i class="fas fa-boxes text-uppercase"></i> Ubicaciones Obtenidas</h3>
         </div>
       </div>
     </div>
@@ -70,8 +76,8 @@
 
         ubicacion.className = 'btn btn-primary m-3';
 
-        latitud.textContent = doc.data().latitud;
-        longitud.textContent = doc.data().longitud;
+        latitud.textContent = `Latitud: ${doc.data().latitud}  `;
+        longitud.textContent = `Longitud: ${doc.data().longitud}  `;
         ubicacion.textContent = 'Ir a Ubicacion';
 
         li.setAttribute('id', doc.id);
