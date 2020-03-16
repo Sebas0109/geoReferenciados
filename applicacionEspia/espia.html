@@ -109,13 +109,11 @@
 
         ubicacion.addEventListener('click', e => {
           let id = e.target.parentElement.getAttribute('id');
-          console.log(e.target.parentElement.getAttribute('latitud'));
-          console.log(e.target.parentElement.getAttribute('longitud'));
           let latitud = e.target.parentElement.getAttribute('latitud');
           let longitud = e.target.parentElement.getAttribute('longitud');
           coordenadas = {
-            lat: latitud,
-            lng: longitud
+            lat: latitud * 1,
+            lng: longitud * 1
           };
           iniciarMapa();
           console.log(coordenadas);
