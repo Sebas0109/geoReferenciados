@@ -122,7 +122,6 @@
             lng: longitud * 1
           };
           iniciarMapa();
-          console.log(coordenadas);
         });
       }
 
@@ -140,6 +139,7 @@
         marker.setPosition(new google.maps.LatLng(coordenadas.lat, coordenadas.lng));
         map.panTo(new google.maps.LatLng(coordenadas.lat, coordenadas.lng));
         map.setCenter(coordenadas);
+        console.log(coordenadas);
       }
     </script>
     <script
