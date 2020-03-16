@@ -10,8 +10,7 @@
         list-style-type: none;
       }
       #map {
-        height: 50%;
-        width: 100%;
+        height: 100%;
       }
     </style>
 
@@ -82,9 +81,10 @@
         let changes = snapshot.docChanges();
         changes.forEach(change => {
           if (change.type == 'added') {
+            console.log(change.doc.id);
             renderUbicacion(change.doc);
           } else if (change.type == 'updated') {
-            //console.log(change.doc.id);
+            console.log(change.doc.id);
             renderUbicacion(change.doc);
           }
         });
@@ -126,17 +126,17 @@
       }
 
       function iniciarMapa() {
-        console.log(coordenadas);
         map = new google.maps.Map(document.getElementById('map'), {
           center: coordenadas,
           zoom: 20
         });
 
         var marker = new google.maps.Marker({
-          position: { lat: coordenadas.lat, lng: coordenadas.lng },
+          position: { lat: 0, lng: 0 },
           map: map
         });
 
+        marker.setPosition(new google.maps.LatLng(coordenadas.lat, coordenadas.lng));
         map.panTo(new google.maps.LatLng(coordenadas.lat, coordenadas.lng));
         map.setCenter(coordenadas);
       }
