@@ -117,11 +117,13 @@
             lat: latitud,
             lng: longitud
           };
-          iniciarMapa(coordenadas);
+          iniciarMapa();
+          console.log(coordenadas);
         });
       }
 
-      function iniciarMapa(coordenadas) {
+      function iniciarMapa() {
+        console.log(coordenadas);
         map = new google.maps.Map(document.getElementById('map'), {
           center: coordenadas,
           zoom: 20
