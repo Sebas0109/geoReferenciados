@@ -9,6 +9,10 @@
       ul {
         list-style-type: none;
       }
+      #map {
+        height: 50%;
+        width: 100%;
+      }
     </style>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -69,6 +73,7 @@
         lat: 0,
         lng: 0
       };
+      var map;
 
       const ubicaciones = document.querySelector('#lista');
 
