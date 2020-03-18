@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIREBASE</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+
+    <!--Libreria Para iconos-->
+    <script
+      src="https://kit.fontawesome.com/725910d27b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid bg-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h3><i class="fas fa-boxes text-primary"></i> Lista de productos</h3>
+          </div>
+          <div class="col-4">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#ventanaNuevo"
+            >
+              Nuevo <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-8 p-2">
+            <ul id="lista" style="list-style: none;" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="ventanaNuevo">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Nuevo Producto</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="forma">
+              <div class="row">
+                <div class="col-12 col-md-4 py-2">
+                  <input
+                    type="text"
+                    name="nombre"
+                    required
+                    class="form-control"
+                    placeholder="Nombre"
+                  />
+                </div>
+                <div class="col-12 col-md-4 py-2">
+                  <input
+                    type="text"
+                    name="codigo"
+                    required
+                    class="form-control"
+                    placeholder="Codigo"
+                  />
+                </div>
+                <div class="col-12 col-md-4 py-2">
+                  <button type="submit" class="btn btn-primary">
+                    Agregar <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--MODAL DE EDICION-->
+    <!-- The Modal -->
+    <div class="modal fade" id="ventanaEditar">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Editar Producto</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="formaEditar">
+              <div class="row">
+                <div class="col-12 col-md-4 py-2">
+                  <input
+                    type="text"
+                    name="nombreEditar"
+                    required
+                    class="form-control"
+                    placeholder="Nombre"
+                  />
+                </div>
+                <div class="col-12 col-md-4 py-2">
+                  <input
+                    type="text"
+                    name="codigoEditar"
+                    required
+                    class="form-control"
+                    placeholder="Codigo"
+                  />
+                </div>
+                <div class="col-12 col-md-4 py-2">
+                  <input type="hidden" name="idEditar" id="idEditar" />
+                  <button type="submit" class="btn btn-primary">
+                    Guardar Cambios
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./javaScripts/basededatos.js"></script>
+    <script src="./javaScripts/constantes.js"></script>
+    <script src="./javaScripts/registro.js"></script>
+    <script src="./javaScripts/muestraregistros.js"></script>
+    <script src="./javaScripts/agregar.js"></script>
+    <script src="./javaScripts/actualizar.js"></script>
+    <script src="./javaScripts/servicio.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
