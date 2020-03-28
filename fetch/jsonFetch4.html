@@ -50,10 +50,10 @@
 
               datos.forEach(marcador => {
                 fetch('https://corona.lmao.ninja/countries').then(function(respuesta) {
-                  //console.log(respuesta);
+                  console.log(respuesta);
                   respuesta.json().then(function(datosPaises) {
                     datosPaises.forEach(registro => {
-                      //
+                      // Sacar Bandera y Numeros Totales de Contagiados Bandera en INfo Window Y Contagiados en un Span abajo
                       var informacion = `<strong>País: </strong> ${registro.country}, <strong>casos:</strong> ${registro.cases}`;
                       var infoWindow = new google.maps.InfoWindow({
                         content: informacion
