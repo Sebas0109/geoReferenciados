@@ -75,8 +75,8 @@
                       datosImp.casos += registro.cases * 1;
                       datosImp.muertes += registro.deaths * 1;
 
-                      document.getElementById('.txtCases').textContent = datosImp.casos;
-                      document.getElementById('.txtDeaths').textContent = datosImp.deaths;
+                      document.getElementById('txtCases').textContent = datosImp.casos;
+                      document.getElementById('txtDeaths').textContent = datosImp.deaths;
 
                       //poner imagen
                       var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country} <br> <strong>casos: </strong> ${registro.cases}`;
