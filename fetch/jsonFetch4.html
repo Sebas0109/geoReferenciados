@@ -31,6 +31,7 @@
       <div class="container">
         <div class="row">
           <h4 class="text-left">Total Cases: <strong id="txtCases">0</strong></h4>
+          <br />
           <h4 class="text-right">Total Deaths: <strong id="txtDeaths">0</strong></h4>
         </div>
       </div>
@@ -76,7 +77,7 @@
                       datosImp.muertes += registro.deaths * 1;
 
                       document.getElementById('txtCases').textContent = datosImp.casos;
-                      document.getElementById('txtDeaths').textContent = datosImp.deaths;
+                      document.getElementById('txtDeaths').textContent = datosImp.muertes;
 
                       //poner imagen
                       var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country} <br> <strong>casos: </strong> ${registro.cases}`;
