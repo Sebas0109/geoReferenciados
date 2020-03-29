@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,8 +27,18 @@
   </head>
   <body>
     <div id="map"></div>
-
+    <div class="card">
+      <div class="container">
+        <h4>Total Cases: <strong id="txtCases">0</strong></h4>
+        <h4>Total Deaths: <strong id="txtDeaths">0</strong></h4>
+      </div>
+    </div>
     <script>
+      var datosImp = {
+        casos: 0,
+        muertes: 0
+      };
+
       var coordenadas = {
         lat: 0,
         lng: 0
@@ -53,9 +69,12 @@
                   //console.log(respuesta);
                   respuesta.json().then(function(datosPaises) {
                     datosPaises.forEach(registro => {
-                      // Sacar Bandera y Numeros Totales de Contagiados Bandera en INfo Window Y Contagiados en un Span abajo
+                      // Sacar Bandera y Casos y Muertes
                       console.log(registro);
-                      var informacion = `<strong>País: </strong> ${registro.country}, <strong>casos:</strong> ${registro.cases}`;
+                      datosImp.casos += registro.cases * 1;
+                      datosImp.muertes += registro.deaths * 1;
+                      //poner imagen
+                      var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country}, <strong>casos:</strong> ${registro.cases}`;
                       var infoWindow = new google.maps.InfoWindow({
                         content: informacion
                       });
@@ -78,6 +97,8 @@
                   });
                 });
               });
+              document.getElementById('.txtCases').innerText = datosImp.casos;
+              document.getElementById('.txtDeaths').innerHTML = datosImp.deaths;
             });
           })
           .catch(function(error) {
@@ -90,6 +111,21 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa"
       async
       defer
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
     ></script>
   </body>
 </html>
