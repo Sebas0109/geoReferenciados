@@ -29,8 +29,10 @@
     <div id="map"></div>
     <div class="card">
       <div class="container">
-        <h4>Total Cases: <strong id="txtCases">0</strong></h4>
-        <h4>Total Deaths: <strong id="txtDeaths">0</strong></h4>
+        <div class="row">
+          <h4>Total Cases: <strong id="txtCases">0</strong></h4>
+          <h4>Total Deaths: <strong id="txtDeaths">0</strong></h4>
+        </div>
       </div>
     </div>
     <script>
@@ -70,11 +72,12 @@
                   respuesta.json().then(function(datosPaises) {
                     datosPaises.forEach(registro => {
                       // Sacar Bandera y Casos y Muertes
-                      console.log(registro);
                       datosImp.casos += registro.cases * 1;
                       datosImp.muertes += registro.deaths * 1;
+                      console.log(datosImp);
+
                       //poner imagen
-                      var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country}, <strong>casos:</strong> ${registro.cases}`;
+                      var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country}, <strong> <br> casos:</strong> ${registro.cases}`;
                       var infoWindow = new google.maps.InfoWindow({
                         content: informacion
                       });
