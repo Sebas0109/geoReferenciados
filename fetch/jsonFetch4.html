@@ -30,8 +30,8 @@
     <div class="card">
       <div class="container">
         <div class="row">
-          <h4>Total Cases: <strong id="txtCases">0</strong></h4>
-          <h4>Total Deaths: <strong id="txtDeaths">0</strong></h4>
+          <h4 class="text-left">Total Cases: <strong id="txtCases">0</strong></h4>
+          <h4 class="text-right">Total Deaths: <strong id="txtDeaths">0</strong></h4>
         </div>
       </div>
     </div>
@@ -74,10 +74,12 @@
                       // Sacar Bandera y Casos y Muertes
                       datosImp.casos += registro.cases * 1;
                       datosImp.muertes += registro.deaths * 1;
-                      console.log(datosImp);
+
+                      document.getElementById('.txtCases').innerText = datosImp.casos;
+                      document.getElementById('.txtDeaths').innerHTML = datosImp.deaths;
 
                       //poner imagen
-                      var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country}, <strong> <br> casos:</strong> ${registro.cases}`;
+                      var informacion = `<img src= ${registro.countryInfo.flag}><br><strong>País: </strong> ${registro.country} <br> <strong>casos: </strong> ${registro.cases}`;
                       var infoWindow = new google.maps.InfoWindow({
                         content: informacion
                       });
@@ -100,8 +102,6 @@
                   });
                 });
               });
-              document.getElementById('.txtCases').innerText = datosImp.casos;
-              document.getElementById('.txtDeaths').innerHTML = datosImp.deaths;
             });
           })
           .catch(function(error) {
