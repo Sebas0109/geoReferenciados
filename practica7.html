@@ -82,9 +82,10 @@
       };
 
       function iniciaMapa() {
-        var map = new.google.maps.Map(document.getElementById('mapa'), {
+        var map = new google.maps.Map(document.getElementById('mapa'), {
           center: coordenadas,
-          zoom: 3
+          zoom: 3,
+          mapTypeId: 'terrain'
         });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -94,22 +95,24 @@
         var cuenta = 1;
 
         localidades.forEach(localidad => {
+          console.log(localidad);
+
           let marcador = new google.maps.Marker({
             map: map,
             position: localidad,
             label: labels[cuenta % labels.length]
           });
 
-          marcadores.push(marcador);
-
           cuenta++;
+
+          marcadores.push(marcador);
         });
 
         var markerCluster = new MarkerClusterer(map, marcadores, {
           imagePath:
             'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
           gridSize: 60,
-          zoomClick: true,
+          zoomOnClick: true,
           maxZoom: 10
         });
 
