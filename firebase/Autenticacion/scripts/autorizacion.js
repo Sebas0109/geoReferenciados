@@ -1,7 +1,7 @@
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log('Usuario entró');
-    db.collection('platillos').onSnapshot(
+    db.collection('platillios').onSnapshot(
       (snapshot) => {
         obtienePlatillos(snapshot.docs);
         configuraMenu(user);
@@ -18,6 +18,7 @@ auth.onAuthStateChanged((user) => {
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
     uid = user.uid;
+    console.log(user);
 
     console.log(name, email, photoUrl, emailVerified, uid);
   } else {
