@@ -73,19 +73,19 @@
         { lat: -42.734358, lng: 147.439506 },
         { lat: -42.734358, lng: 147.501315 },
         { lat: -42.735258, lng: 147.438 },
-        { lat: -43.999792, lng: 170.463352 }
+        { lat: -43.999792, lng: 170.463352 },
       ];
 
       var coordenadas = {
         lat: -31.56391,
-        lng: 147.154312
+        lng: 147.154312,
       };
 
       function iniciaMapa() {
         var map = new google.maps.Map(document.getElementById('mapa'), {
           center: coordenadas,
           zoom: 3,
-          mapTypeId: 'terrain'
+          mapTypeId: 'terrain',
         });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -94,13 +94,13 @@
 
         var cuenta = 1;
 
-        localidades.forEach(localidad => {
+        localidades.forEach((localidad) => {
           console.log(localidad);
 
           let marcador = new google.maps.Marker({
             map: map,
             position: localidad,
-            label: labels[cuenta % labels.length]
+            label: labels[cuenta % labels.length],
           });
 
           cuenta++;
@@ -113,22 +113,22 @@
             'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
           gridSize: 60,
           zoomOnClick: true,
-          maxZoom: 10
+          maxZoom: 10,
         });
 
-        document.getElementById('btnroadmap').addEventListener('click', function() {
+        document.getElementById('btnroadmap').addEventListener('click', function () {
           map.setMapTypeId('roadmap');
         });
 
-        document.getElementById('btnsatellite').addEventListener('click', function() {
+        document.getElementById('btnsatellite').addEventListener('click', function () {
           map.setMapTypeId('satellite');
         });
 
-        document.getElementById('btnhybrid').addEventListener('click', function() {
+        document.getElementById('btnhybrid').addEventListener('click', function () {
           map.setMapTypeId('hybrid');
         });
 
-        document.getElementById('btnterrain').addEventListener('click', function() {
+        document.getElementById('btnterrain').addEventListener('click', function () {
           map.setMapTypeId('terrain');
         });
       }
@@ -139,7 +139,6 @@
       async
       defer
     ></script>
-    }
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
