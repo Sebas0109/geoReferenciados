@@ -9,7 +9,7 @@ auth.onAuthStateChanged((user) => {
           .update({
             coordenadas: {
               latitude: position.coords.latitude,
-              longitue: position.coords.longitude,
+              longitude: position.coords.longitude,
             },
           });
       });
@@ -18,6 +18,7 @@ auth.onAuthStateChanged((user) => {
     db.collection('usuarios').onSnapshot(
       (snapshot) => {
         obtieneAmigos(snapshot.docs);
+        configuraMenu(user);
       },
       (err) => {
         console.log(err.message);

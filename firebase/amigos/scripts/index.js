@@ -9,14 +9,14 @@ const configuraMenu = (user) => {
       .get()
       .then((doc) => {
         const html = `
-                <p>Nombre: ${doc.data().nombre}</p>
-                <p>Correo: ${user.email}</p>
-                <p>Teléfono: ${doc.data().telefono}</p>
-                <p>Dirección: ${doc.data().direccion}</p>
-                <p>Coordenadas: ${doc.data().coordenadas.latitude} , ${
+               <p>Nombre: ${doc.data().nombre}</p>
+               <p>Correo: ${user.email}</p>
+               <p>Teléfono: ${doc.data().telefono}</p>
+               <p>Dirección: ${doc.data().direccion}</p>
+               <p>Coordenadas: ${doc.data().coordenadas.latitude} , ${
           doc.data().coordenadas.longitude
         }</p>
-            `;
+           `;
         datosdelacuenta.innerHTML = html;
       });
 
@@ -45,8 +45,8 @@ const obtieneAmigos = (data) => {
     informacion = new google.maps.InfoWindow();
 
     var pos = {
-      latitude: doc.data().coordenadas.latitude,
-      longitude: doc.data().coordenadas.longitude,
+      lat: doc.data().coordenadas.latitude,
+      lng: doc.data().coordenadas.longitude,
     };
 
     informacion.setPosition(pos);
