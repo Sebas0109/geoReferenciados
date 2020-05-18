@@ -18,7 +18,6 @@ auth.onAuthStateChanged((user) => {
     db.collection('usuarios').onSnapshot(
       (snapshot) => {
         obtieneAmigos(snapshot.docs);
-        configurarMenu(user);
       },
       (err) => {
         console.log(err.message);
