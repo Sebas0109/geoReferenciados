@@ -32,39 +32,53 @@
   </head>
   <body>
     <div class="container-fluid m-2 text-center">
-      <div class="row">
+      <div class="row" style="background-color: cornflowerblue; margin: 15px;">
         <div class="col-12">
-          <h1>Eventos en Mapas</h1>
+          <h1 class="display-1">Eventos en Mapas</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="background-color: aquamarine; margin: 15px;">
         <div class="col-12">
           <div id="mapa1"></div>
-          <p>Evento Click en Mapa</p>
+          <h4>Evento Click en Mapa</h4>
+          <p>Simple click en un mapa</p>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12">
           <div id="mapa2"></div>
-          <p>Regresa al centro</p>
+          <h4>Regresa al centro</h4>
+          <p>
+            Cada cierto tiempo el mapa regresara al centro de las coordenadas
+            especificadas
+          </p>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="background-color: beige; margin: 15px;">
         <div class="col-12">
           <div id="mapa3"></div>
-          <p>Obtiene nivel de Zoom</p>
+          <h4>Obtiene nivel de Zoom</h4>
+          <p>En el mapa se obtiene el nivel de zoom que se haga en el mapa</p>
         </div>
         <div class="col-12">
           <div id="mapa4"></div>
-          <p>Coloca marcador y mueve al centro</p>
+          <h4>Coloca marcador y mueve al centro</h4>
+          <p>
+            El mapa se mueve automaticamente al centro del marcador que se haya colocado
+          </p>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="background-color: blanchedalmond; margin: 15px;">
         <div class="col-12">
           <div id="mapa5"></div>
-          <p>Obtiene coordenadas con mapsMouseEvent</p>
+          <h4>Obtiene coordenadas con mapsMouseEvent</h4>
+          <p>
+            Se obtienen las coordenadas del click con el maouse sobre el mapa (TENERLO EN
+            CUENTA MUY UTIL)
+          </p>
         </div>
         <div class="col-12">
           <div id="mapa6"></div>
-          <p>addDomListener</p>
+          <h4>addDomListener</h4>
+          <p>Pendiente de eventos en el DOM de la pagina</p>
           <button class="btn btn-primary" id="btnCentrar">Centrar</button>
         </div>
       </div>
