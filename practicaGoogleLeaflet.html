@@ -146,19 +146,17 @@
   </script>
   <script>
     //LEAFLET API
-    function iniciarMapaLeaflet() {
-      var map = L.map('mapL').setView([50.84673, 4.35247], 12);
+    var map = L.map('mapL').setView([50.84673, 4.35247], 12);
 
-      L.tileLayer('https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png', {
-        attribution:
-          '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' +
-          ', Tiles courtesy of <a href="https://geo6.be/">GEO-6</a>',
-        maxZoom: 18,
-      }).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' +
+        ', Tiles courtesy of <a href="https://geo6.be/">GEO-6</a>',
+      maxZoom: 18,
+    }).addTo(map);
 
-      var marker = L.marker([50.84673, 4.35247]).addTo(map);
-      //var popup = marker.bindPopup('<b>Hello world!</b><br />I am a popup.');
-    }
+    var marker = L.marker([50.84673, 4.35247]).addTo(map);
+    //var popup = marker.bindPopup('<b>Hello world!</b><br />I am a popup.');
   </script>
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
